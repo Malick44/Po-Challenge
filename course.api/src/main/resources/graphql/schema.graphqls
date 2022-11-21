@@ -1,0 +1,25 @@
+#schema {
+#    query: Query
+#    mutation: Mutation
+#}
+
+type Course {
+    id: ID!
+    title:String
+    author:Author
+    description: String
+    section: Section
+
+}
+
+type Section {
+    id:ID
+    paragraph:[String]
+
+}
+
+type Author {
+    id:ID
+    fullName: String
+    course:Course
+}
