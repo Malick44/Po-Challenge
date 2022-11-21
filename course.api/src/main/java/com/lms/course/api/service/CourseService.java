@@ -26,8 +26,10 @@ public class CourseService {
         return courseRepository.save(newCourse);
     }
 
-    public Course getCourse(String id){
-        Course course = courseRepository.findById(id).get();
+    public Course getCourseById(String id) throws Exception {
+        Course course = courseRepository.findById(id).orElseThrow(() ->{
+            return new Exception("No course with id : "+id);
+        });
         return course;
 
     }

@@ -26,13 +26,13 @@ public class Course {
    @TextIndexed
    private String title;
    @Indexed
-    private String author;
+    private Author author;
     @TextIndexed
     private String subject;
     @TextIndexed
     private String description;
     private String type;
-    private String rating;
+    private Rating rating;
     private String level;
     private Duration duration;
     private String[] keywords;
@@ -41,7 +41,7 @@ public class Course {
     private Integer view;
     private String price;
     private static Long views;
-    private String Category;
+    private Category Category;
     @DBRef private Section section;
 
 

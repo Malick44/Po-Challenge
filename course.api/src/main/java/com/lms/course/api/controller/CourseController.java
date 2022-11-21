@@ -27,12 +27,13 @@ public class CourseController {
     }
     @GetMapping
     public List<Course> getAllCourses(){
-       return courseService.getAllCourses();
+
+        return courseService.getAllCourses();
     }
     @GetMapping("/{id}")
-    public Course getCourse(@PathVariable String id){
+    public Course getCourseById(@PathVariable String id) throws Exception {
 
-        return courseService.getCourse(id);
+        return courseService.getCourseById(id);
     }
     @PostMapping("/createCourse")
     @Transient
