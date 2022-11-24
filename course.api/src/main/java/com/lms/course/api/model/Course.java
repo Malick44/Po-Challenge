@@ -1,12 +1,14 @@
 package com.lms.course.api.model;
 
 import lombok.*;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.index.TextIndexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Index;
 import java.time.Duration;
@@ -23,9 +25,11 @@ public class Course {
 
    @Id
     private String id;
+
    @TextIndexed
    private String title;
-   @Indexed
+    @Indexed
+    @DBRef
     private Author author;
     @TextIndexed
     private String subject;
