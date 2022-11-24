@@ -2,6 +2,7 @@ package com.lms.course.api.controller;
 
 
 import com.lms.course.api.dto.CourseDto;
+import com.lms.course.api.model.Author;
 import com.lms.course.api.model.Course;
 import com.lms.course.api.service.CourseService;
 import org.modelmapper.ModelMapper;
@@ -19,7 +20,7 @@ public class CourseController {
 
    private final ModelMapper mapper;
 
-//
+
     @Autowired
     private CourseController(CourseService courseService, ModelMapper mapper){
         this.courseService=courseService;
@@ -27,9 +28,9 @@ public class CourseController {
     }
     @GetMapping
     public List<Course> getAllCourses(){
-
-        return courseService.getAllCourses();
+        return courseService.getAllCourse();
     }
+
     @GetMapping("/{id}")
     public Course getCourseById(@PathVariable String id) throws Exception {
 
@@ -39,7 +40,7 @@ public class CourseController {
     @Transient
     public void addCourse(@RequestBody CourseDto courseDto){
         Course newCourse = dtoToCourse(courseDto);
-        newCourse.setAuthor("Malick");
+        newCourse.setAuthor(new Author("Malick"));
         newCourse.setTitle("try");
         courseService.createCourse(newCourse);
     }

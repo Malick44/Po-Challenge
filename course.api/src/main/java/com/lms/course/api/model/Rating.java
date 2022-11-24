@@ -4,8 +4,9 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.stereotype.Component;
 
-@Document
+
 public enum Rating {
         FIVE_STARS("⭐️⭐️⭐️⭐️⭐️️️️"),
         FOUR_STARS("⭐️⭐️⭐️⭐️"),

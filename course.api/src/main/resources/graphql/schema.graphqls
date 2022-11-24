@@ -1,25 +1,50 @@
-#schema {
-#    query: Query
-#    mutation: Mutation
-#}
+# This file was generated based on ".graphqlconfig". Do not edit manually.
 
-type Course {
-    id: ID!
-    title:String
-    author:Author
-    description: String
-    section: Section
-
+schema {
+    query: Query
+    mutation: Mutation
 }
 
-type Section {
-    id:ID
-    paragraph:[String]
-
+type Query {
+    Course(id:String): Course
+    courseByAuthor(id: String): Course
+    getAllCourses: [Course]
 }
 
 type Author {
-    id:ID
+    course: [Course]
     fullName: String
-    course:Course
+    id: ID
+}
+
+type Course {
+    author: Author
+    description: String
+    id: ID!
+    rating: Rating
+    section: Section
+    title: String
+}
+
+type Mutation {
+    addCourse(input: AddCourse_Input): Course
+}
+
+
+type Section {
+    id: ID
+    paragraph: [String]
+}
+
+enum Rating {
+    FIVE_STARS
+    FOUR_STARS
+    ONE_STAR
+    THREE_STARS
+    TWO_STARS
+}
+
+input AddCourse_Input {
+    id: ID!
+    title: String!
 }
