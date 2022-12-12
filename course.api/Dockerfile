@@ -4,14 +4,13 @@
 #RUN apt-get update
 #RUN apt-get install nginx -y
 #CMD ["nginx", "-g", "daemon off;"]
-FROM maven
+FROM openjdk:17
 
-WORKDIR /api
 LABEL maintainer="javaAPi"
 COPY .mvn/ .mvn
 COPY mvnw pom.xml ./
 
-
+WORKDIR /tmp
 #RUN ./mvnw dependency:resolve
 COPY src ./src
 COPY target/springBootApp.jar springBootApp.jar
