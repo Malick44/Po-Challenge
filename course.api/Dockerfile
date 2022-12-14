@@ -7,7 +7,7 @@
 FROM openjdk:17
 
 LABEL maintainer="javaAPi"
-COPY .mvn/ .mvn
+COPY .mvn .mvn
 COPY mvnw pom.xml ./
 
 WORKDIR /tmp
@@ -15,5 +15,5 @@ WORKDIR /tmp
 COPY src ./src
 COPY target/springBootApp.jar springBootApp.jar
 ENTRYPOINT ["java", "-jar", "springBootApp.jar"]
-EXPOSE 3000
+
 
