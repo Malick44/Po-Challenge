@@ -1,0 +1,23 @@
+server:
+  port: 7002
+
+spring:
+  profiles:
+    active: dev
+
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/db
+    username: root
+    password: pass
+  jpa:
+    hibernate.ddl-auto: update
+    generate-ddl: true
+    show-sql: true
+  logging:
+    level:
+      web: DEBUG
+    file: /resources/application-debug.log
+    pattern:
+      console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+      file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"

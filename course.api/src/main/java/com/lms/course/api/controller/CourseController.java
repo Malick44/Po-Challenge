@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
+
 @RestController
 @RequestMapping("/course")
 public class CourseController {
@@ -50,6 +52,10 @@ public class CourseController {
     protected Course dtoToCourse(CourseDto courseDto) {
 
         return mapper.map(courseDto,Course.class);
+    }
+    protected CourseDto CourseToDto(Course course) {
+
+        return mapper.map(course,CourseDto.class);
     }
 
 }
