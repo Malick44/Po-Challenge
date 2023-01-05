@@ -2,6 +2,7 @@ package com.lms.course.api.service.grapgql;
 
 import com.lms.course.api.model.Course;
 import com.lms.course.api.repository.CourseRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

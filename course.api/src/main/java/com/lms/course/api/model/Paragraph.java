@@ -1,15 +1,12 @@
 package com.lms.course.api.model;
 
 import lombok.*;
-import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.Id;
-import java.util.List;
 
-@Document(collection = "section")
+@Document(collection = "paragraph")
 @Component
 @Builder
 @Getter
@@ -17,11 +14,10 @@ import java.util.List;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class Section {
+public class Paragraph {
     @Id
     private String id;
-    private String mediaUrl;
-    @DBRef
-    @Indexed(unique = true)
-    private List<Paragraph> paragraphs;
+    private String sectionId;
+    private String title;
+    private String paragraph;
 }

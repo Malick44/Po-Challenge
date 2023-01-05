@@ -15,6 +15,7 @@ public class ApplicationRunner implements CommandLineRunner {
                 .rating("5")
                 .title("test")
                 .subject("Spring-Mongo")
+                .isNew(true)
                 .build();
         String jso= objectMapper.writeValueAsString(courseDto);
         System.out.println(jso);

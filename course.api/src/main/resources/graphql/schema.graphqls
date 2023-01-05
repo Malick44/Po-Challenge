@@ -6,9 +6,24 @@ schema {
 }
 
 type Query {
-    Course(id:String): Course
-    courseByAuthor(id: String): Course
+    getCourseById(id:ID!): Course
+    getCourseByAuthor(id:ID!): Course
     getAllCourses: [Course]
+    getSections: [Section]
+    getSectionId(id:ID!): Section
+    getParagraphs:[Paragraph]
+    getParagraphById(id:ID!):Paragraph
+}
+type Mutation {
+    addCourse(course: CourseInput): Course
+    updateCourse(id: ID!, course: CourseInput): Course
+    deleteCourse(id: ID!): Course
+    addSection(section: SectionInput): Section
+    updateSection(id: ID!, section: SectionInput): Section
+    deleteSection(id: ID!): Section
+    addParagraph(id: ID!, paragraph:ParagraphInput): Paragraph
+    updateParagraph(id: ID!, paragraph:ParagraphInput):Paragraph
+    deleteParagraph(id: ID!):Paragraph
 }
 
 type Author {
@@ -18,22 +33,50 @@ type Author {
 }
 
 type Course {
-    author: Author
-    description: String
-    id: ID!
-    rating: Rating
-    section: Section
+    id: ID
     title: String
+    author: Author
+    subject: String
+    description: String
+    type: String
+    rating: Rating
+    level: String
+    duration: Duration
+    keywords: [String]
+    language: String
+    year: Int
+    view: Int
+    price: String
+    category: Category
+    sections: [Section]
+    isNew: Boolean
 }
 
-type Mutation {
-    addCourse(input: AddCourse_Input): Course
+type Duration {
+    hours: Int
+    minutes: Int
 }
+
+type Category {
+    name: String
+    description: String
+}
+
 
 
 type Section {
     id: ID
-    paragraph: [String]
+    courseId:String!
+    title: String
+    paragraph: [Paragraph]
+    mediaUrl: String
+
+}
+type Paragraph {
+    id: String!
+    sectionId:String!
+    title: String
+    paragraph: String
 }
 
 enum Rating {
@@ -43,8 +86,47 @@ enum Rating {
     THREE_STARS
     TWO_STARS
 }
+input CourseInput {
+    title: String
+    author: String
+    subject: String
+    description: String
+    type: String
+    rating: RatingInput
+    level: String
+    duration: DurationInput
+    keywords: [String]
+    language: String
+    year: Int
+    view: Int
+    price: String
+    category: CategoryInput
+    sections: [SectionInput]
+    isNew: Boolean
+}
 
-input AddCourse_Input {
-    id: ID!
+input RatingInput {
+    rating: Int
+    totalRatings: Int
+}
+
+input DurationInput {
+    hours: Int
+    minutes: Int
+}
+
+input CategoryInput {
+    name: String
+    description: String
+}
+
+input SectionInput {
+    title: String
+    mediaUrl: String
+
+}
+
+input ParagraphInput{
     title: String!
+    paragraph: String!
 }

@@ -1,11 +1,16 @@
 package com.lms.course.api.dto;
 
+import com.lms.course.api.model.Paragraph;
+import com.lms.course.api.model.Section;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Builder
@@ -27,4 +32,10 @@ public class CourseDto {
     private String price;
     private static Long views;
     private String Category;
+    private List<Section> sections =new ArrayList<>();
+    private Boolean isNew=true;
+
+
+
+
 }
