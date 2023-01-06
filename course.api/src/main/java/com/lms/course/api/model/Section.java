@@ -20,8 +20,9 @@ import java.util.List;
 public class Section {
     @Id
     private String id;
-    private String mediaUrl;
+    @DBRef
+    private List<Media> mediaList;
     @DBRef
     @Indexed(unique = true)
-    private List<Paragraph> paragraphs;
+    private List<Lecture> readingText;
 }

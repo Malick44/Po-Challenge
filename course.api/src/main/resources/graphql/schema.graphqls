@@ -11,19 +11,22 @@ type Query {
     getAllCourses: [Course]
     getSections: [Section]
     getSectionId(id:ID!): Section
-    getParagraphs:[Paragraph]
-    getParagraphById(id:ID!):Paragraph
+    GetMediaList:[Media]
+    GetMediaById(id:ID!): Media
 }
 type Mutation {
-    addCourse(course: CourseInput): Course
+    createCourse(course: CourseInput): Course
+    addAuthor(author:AuthorInput):Author
+    updateAuthor(id:ID!,author:AuthorInput):Author
+    deleteAuthor(id:ID!):Author
     updateCourse(id: ID!, course: CourseInput): Course
     deleteCourse(id: ID!): Course
     addSection(section: SectionInput): Section
     updateSection(id: ID!, section: SectionInput): Section
     deleteSection(id: ID!): Section
-    addParagraph(id: ID!, paragraph:ParagraphInput): Paragraph
-    updateParagraph(id: ID!, paragraph:ParagraphInput):Paragraph
-    deleteParagraph(id: ID!):Paragraph
+    addMedia(media: MediaInput):Media
+    updateMedia(id:ID!, media:MediaInput):Media
+    deleteMedia(id:ID!):Media
 }
 
 type Author {
@@ -65,18 +68,39 @@ type Category {
 
 
 type Section {
-    id: ID
-    courseId:String!
+    id: ID!
+    courseId:ID!
     title: String
-    paragraph: [Paragraph]
+    lectures: [Lecture]
+    quizzes: [Quizzes]
+    assignments: [Assignment]
     mediaUrl: String
 
 }
-type Paragraph {
-    id: String!
-    sectionId:String!
+type Quizzes {
+    id: ID!
+    sectionId:ID!
     title: String
-    paragraph: String
+    questions: [String]
+}
+type Assignment{
+    id: ID!
+    sectionId:ID!
+    title: String
+    questions: [String]
+}
+
+type Lecture{
+    id: ID!
+    sectionId:ID!
+    title: String
+    text: String
+}
+type Media {
+    id: ID!
+    title:String
+    url: String
+    type: String
 }
 
 enum Rating {
@@ -88,26 +112,23 @@ enum Rating {
 }
 input CourseInput {
     title: String
-    author: String
+    authorId: ID!
     subject: String
     description: String
     type: String
-    rating: RatingInput
     level: String
-    duration: DurationInput
     keywords: [String]
     language: String
     year: Int
     view: Int
-    price: String
-    category: CategoryInput
-    sections: [SectionInput]
     isNew: Boolean
+}
+input AuthorInput{
+    name:String!
 }
 
 input RatingInput {
-    rating: Int
-    totalRatings: Int
+    value: Int
 }
 
 input DurationInput {
@@ -121,12 +142,28 @@ input CategoryInput {
 }
 
 input SectionInput {
+    courseId:ID!
     title: String
-    mediaUrl: String
-
 }
 
-input ParagraphInput{
-    title: String!
-    paragraph: String!
+input QuizzesInput {
+    sectionId:ID!
+    title: String
+    questions: [String]
+}
+input AssignmentInput{
+    sectionId:ID!
+    title: String
+    questions: [String]
+}
+
+input LectureInput{
+    sectionId:String
+    title: String
+    text: String
+}
+input MediaInput{
+    title:String
+    url: String
+    type: String
 }

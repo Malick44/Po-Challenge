@@ -1,5 +1,11 @@
-query {
-   getAllCourses {
-       id
-   }
+type Query {
+    getCourseById(id:ID!): Course
+    getCourseByAuthor(id:ID!): Course
+    getAllCourses: [Course]
+    getSections: [Section]
+    getSectionId(id:ID!): Section
+    getParagraphs:[Paragraph]
+    getParagraphById(id:ID!):Paragraph
+    GetMediaList:[Media]
+    GetMediaById(id:ID!): Media
 }

@@ -14,10 +14,10 @@ import javax.persistence.Id;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class Paragraph {
+public class Lecture {
     @Id
     private String id;
     private String sectionId;
     private String title;
-    private String paragraph;
+    private String readingText;
 }

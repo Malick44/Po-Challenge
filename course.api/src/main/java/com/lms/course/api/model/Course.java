@@ -46,7 +46,7 @@ public class Course {
     private static Long views;
     @DBRef
     @Indexed(unique = true)
-    private Category Category;
+    private Category category;
     @DBRef
     private List<Section> sections =new ArrayList<>();
     private Boolean isNew=true;
@@ -55,6 +55,20 @@ public class Course {
 
 }
 /*
+mutation ($course:CourseInput!={
+    title:"new Row"
+    author: "James"
+
+}) {
+    createCourse(course:$course){
+        id
+        title
+
+
+}
+}
+
+
 * type Course {
   id: ID
   title: String

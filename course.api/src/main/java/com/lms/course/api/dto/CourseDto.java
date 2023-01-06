@@ -1,6 +1,5 @@
 package com.lms.course.api.dto;
 
-import com.lms.course.api.model.Paragraph;
 import com.lms.course.api.model.Section;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,18 +23,11 @@ public class CourseDto {
     private String type;
     private String rating;
     private String level;
-    private Duration duration;
     private String keywords;
     private String language= "en-US";
     private Integer Year;
     private Integer view;
     private String price;
     private static Long views;
-    private String Category;
-    private List<Section> sections =new ArrayList<>();
     private Boolean isNew=true;
-
-
-
-
 }
