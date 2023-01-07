@@ -20,6 +20,7 @@ public class Author {
         @Id
         private Integer id;
         private String firstName, lastName;
+        private String fullNme= firstName +" "+lastName;
         public List<Course> courses;
 
 }

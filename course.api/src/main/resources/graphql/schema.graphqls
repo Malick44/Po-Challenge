@@ -4,16 +4,18 @@ schema {
     query: Query
     mutation: Mutation
 }
-
 type Query {
     getCourseById(id:ID!): Course
     getCourseByAuthor(id:ID!): Course
     getAllCourses: [Course]
     getSections: [Section]
     getSectionId(id:ID!): Section
+    getLectures:[Lecture]
+    getLecturesById(id:ID!):Lecture
     GetMediaList:[Media]
     GetMediaById(id:ID!): Media
 }
+
 type Mutation {
     createCourse(course: CourseInput): Course
     addAuthor(author:AuthorInput):Author
@@ -24,15 +26,22 @@ type Mutation {
     addSection(section: SectionInput): Section
     updateSection(id: ID!, section: SectionInput): Section
     deleteSection(id: ID!): Section
+    addLecture(lecture:LectureInput):Lecture
+    updateLecture(id:ID!, lecture:LectureInput):Lecture
+    deleteLecture(id:ID!):Lecture
     addMedia(media: MediaInput):Media
     updateMedia(id:ID!, media:MediaInput):Media
     deleteMedia(id:ID!):Media
 }
 
+
+
 type Author {
-    course: [Course]
-    fullName: String
     id: ID
+    course: [Course]
+    firstName: String
+    lastName: String
+
 }
 
 type Course {
@@ -124,7 +133,8 @@ input CourseInput {
     isNew: Boolean
 }
 input AuthorInput{
-    name:String!
+    firstName:String!
+    lastName:String
 }
 
 input RatingInput {

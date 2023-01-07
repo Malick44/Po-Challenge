@@ -10,9 +10,9 @@ import javax.validation.constraints.Min;
 @Component
 public class Ratings {
 
-    private int value;
-    private int rateCount;
-    private float rateLevel;
+    private int value=5;
+    private int rateCount=1;
+    private float rateLevel =value/rateCount;
 
     public int getValue() {
         return value;
@@ -28,7 +28,7 @@ public class Ratings {
     }
 
     public float getRateLevel() {
-        return this.value/this.rateCount;
+        return rateLevel;
     }
 
 }

@@ -1,7 +1,13 @@
 # dev profile
 ---
+
 server:
-  port: 8080
+  port: 5000
+graphql:
+  graphiql:
+    enabled: true
+    path: /graphiql
+    version: latest
 logging:
   file: /target/classes/myapp.log
   file.append: true
@@ -11,14 +17,29 @@ spring:
   profiles:
     active: dev
   jpa:
+    show-sql: true
     hibernate:
       ddl-auto: create-drop
+      show-sql: true
+      dialect: org.hibernate.dialect.MySQL5Dialect
+
   data:
-    mongodb:
-      database: CourseDb
-      auto-index-creation: true
-      authentication-database: admin
-      host: localhost
-      port: 27017
-      username: admin
+    datasource:
+      driverClassName: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/db
+      username: root
       password: pass
+#    mongodb:
+#      database: CourseDb
+#      auto-index-creation: true
+#      authentication-database: admin
+#      host: localhost
+#      port: 27017
+#      username: admin
+#      password: pass
+#    jpa:
+#        properties:
+#          hibernate:
+#            dialect: org.hibernate.ogm.datastore.mongodb.MongoDBDialect
+#        database-platform: org.hibernate.ogm.datastore.mongodb.impl.MongoDBDialect
+#        database: MONGO
