@@ -1,0 +1,47 @@
+#spring:
+#  profiles:
+#    active: dev
+
+#  data:
+#    mongodb:
+#      database: CourseDb
+#        auto-index-creation: true
+#        authentication-database: admin
+#        host: localhost
+#        port: 27017
+#        username: admin
+#        password: pass
+#  jpa:
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.ogm.datastore.mongodb.MongoDBDialect
+#    database-platform: org.hibernate.ogm.datastore.mongodb.impl.MongoDBDialect
+
+# Spring Boot properties
+spring:
+  # Hibernate JPA configuration
+  jpa:
+    # Automatically update the database schema to match the entity mappings
+    hibernate:
+      ddl-auto: update
+  # MongoDB configuration
+  data:
+    mongodb:
+      # Enable the auto-creation of indexes for the collections that are mapped to your entities
+      auto-index-creation: true
+      authentication-database: admin
+      # URI of the MongoDB server
+      database: myCourse
+      host: localhost
+      port: 27017
+      username: admin
+      password: pass
+  graphql:
+    graphiql:
+      enabled: true
+      path: /graphiql
+      version: latest
+# MongoDB logging configuration
+  logging:
+   level:
+    org.springframework.data.mongodb: debug

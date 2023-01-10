@@ -1,0 +1,42 @@
+schema {
+    query: Query
+    mutation: Mutation
+}
+type Query{
+    getAuthor(id:ID):Author
+    getAllAuthors:[Author]
+    getAllCourses:[Course]
+    getCourseById(id:ID):Course
+    getAllCoursesByAuthorId(id:ID):[Course]
+}
+
+type coursesCreated {
+    courses:[Course]
+}
+type Mutation{
+    addAuthor(authorInput:AuthorInput):Author
+    addCourse(courseInput:CourseInput):Course
+
+}
+
+
+type Author {
+    id: ID
+    firstName: String
+    lastName: String
+    fullName: String
+    coursesEnrolled:[Course]
+}
+
+type Course {
+    id:ID
+    title:String
+    authorId:ID!
+}
+input AuthorInput{
+    firstName:String!
+    lastName:String
+}
+input CourseInput {
+    title:String!
+}

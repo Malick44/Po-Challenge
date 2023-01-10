@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # dev profile
 ---
 
@@ -43,3 +44,10 @@ spring:
 #            dialect: org.hibernate.ogm.datastore.mongodb.MongoDBDialect
 #        database-platform: org.hibernate.ogm.datastore.mongodb.impl.MongoDBDialect
 #        database: MONGO
+=======
+spring:
+  data:
+    mongodb:
+      uri: mongodb://admin:pass@localhost:27017/course
+      auto-ddl: create-drop
+>>>>>>> main
