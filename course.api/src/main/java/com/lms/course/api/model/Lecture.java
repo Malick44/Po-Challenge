@@ -5,10 +5,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.Id;
-import java.util.List;
 
-
-@Document()
+@Document(collection = "paragraph")
 @Component
 @Builder
 @Getter
@@ -16,11 +14,10 @@ import java.util.List;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class Author {
-        @Id
-        private Integer id;
-        private String firstName, lastName;
-        private String fullNme= firstName +" "+lastName;
-        public List<Course> courses;
-
+public class Lecture {
+    @Id
+    private String id;
+    private String sectionId;
+    private String title;
+    private String readingText;
 }

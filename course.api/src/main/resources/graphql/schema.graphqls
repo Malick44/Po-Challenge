@@ -4,36 +4,112 @@ schema {
     query: Query
     mutation: Mutation
 }
-
 type Query {
-    Course(id:String): Course
-    courseByAuthor(id: String): Course
+    getCourseById(id:ID!): Course
+    getCourseByAuthor(id:ID!): Course
     getAllCourses: [Course]
-}
-
-type Author {
-    course: [Course]
-    fullName: String
-    id: ID
-}
-
-type Course {
-    author: Author
-    description: String
-    id: ID!
-    rating: Rating
-    section: Section
-    title: String
+    getSections: [Section]
+    getSectionId(id:ID!): Section
+    getLectures:[Lecture]
+    getLecturesById(id:ID!):Lecture
+    GetMediaList:[Media]
+    GetMediaById(id:ID!): Media
 }
 
 type Mutation {
-    addCourse(input: AddCourse_Input): Course
+    createCourse(course: CourseInput): Course
+    addAuthor(author:AuthorInput):Author
+    updateAuthor(id:ID!,author:AuthorInput):Author
+    deleteAuthor(id:ID!):Author
+    updateCourse(id: ID!, course: CourseInput): Course
+    deleteCourse(id: ID!): Course
+    addSection(section: SectionInput): Section
+    updateSection(id: ID!, section: SectionInput): Section
+    deleteSection(id: ID!): Section
+    addLecture(lecture:LectureInput):Lecture
+    updateLecture(id:ID!, lecture:LectureInput):Lecture
+    deleteLecture(id:ID!):Lecture
+    addMedia(media: MediaInput):Media
+    updateMedia(id:ID!, media:MediaInput):Media
+    deleteMedia(id:ID!):Media
 }
 
 
-type Section {
+
+type Author {
     id: ID
-    paragraph: [String]
+    course: [Course]
+    firstName: String
+    lastName: String
+
+}
+
+type Course {
+    id: ID
+    title: String
+    author: Author
+    subject: String
+    description: String
+    type: String
+    rating: Rating
+    level: String
+    duration: Duration
+    keywords: [String]
+    language: String
+    year: Int
+    view: Int
+    price: String
+    category: Category
+    sections: [Section]
+    isNew: Boolean
+}
+
+type Duration {
+    hours: Int
+    minutes: Int
+}
+
+type Category {
+    name: String
+    description: String
+}
+
+
+
+type Section {
+    id: ID!
+    courseId:ID!
+    title: String
+    lectures: [Lecture]
+    quizzes: [Quizzes]
+    assignments: [Assignment]
+    mediaUrl: String
+
+}
+type Quizzes {
+    id: ID!
+    sectionId:ID!
+    title: String
+    questions: [String]
+}
+type Assignment{
+    id: ID!
+    sectionId:ID!
+    title: String
+    questions: [String]
+}
+
+type Lecture{
+    id: ID!
+    sectionId:ID!
+    title: String
+    text: String
+}
+type Media {
+    id: ID!
+    title:String
+    url: String
+    type: String
 }
 
 enum Rating {
@@ -43,8 +119,61 @@ enum Rating {
     THREE_STARS
     TWO_STARS
 }
+input CourseInput {
+    title: String
+    authorId: ID!
+    subject: String
+    description: String
+    type: String
+    level: String
+    keywords: [String]
+    language: String
+    year: Int
+    view: Int
+    isNew: Boolean
+}
+input AuthorInput{
+    firstName:String!
+    lastName:String
+}
 
-input AddCourse_Input {
-    id: ID!
-    title: String!
+input RatingInput {
+    value: Int
+}
+
+input DurationInput {
+    hours: Int
+    minutes: Int
+}
+
+input CategoryInput {
+    name: String
+    description: String
+}
+
+input SectionInput {
+    courseId:ID!
+    title: String
+}
+
+input QuizzesInput {
+    sectionId:ID!
+    title: String
+    questions: [String]
+}
+input AssignmentInput{
+    sectionId:ID!
+    title: String
+    questions: [String]
+}
+
+input LectureInput{
+    sectionId:String
+    title: String
+    text: String
+}
+input MediaInput{
+    title:String
+    url: String
+    type: String
 }

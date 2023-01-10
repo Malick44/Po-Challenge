@@ -1,5 +1,5 @@
-query {
-   getAllCourses {
-       id
-   }
+{
+    getAllCourses {
+        id
+    }
 }
